@@ -37,7 +37,7 @@ namespace StatsCounter.Services
             }
             catch(Exception ex)
             {
-                return new List<RepositoryInfo>();
+                throw new ApplicationException("Sample_Message", ex);
             }
            
 

@@ -21,7 +21,7 @@ namespace StatsCounter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            var gitHubKey = _configuration["Github:GithubKey"];
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc(
@@ -34,7 +34,7 @@ namespace StatsCounter
             });
 
             services
-                .AddGitHubService(new Uri(_configuration["GitHubSettings:BaseApiUrl"]))
+                .AddGitHubService(new Uri(_configuration["GitHubSettings:BaseApiUrl"]),gitHubKey)
                 .AddTransient<IStatsService, StatsService>();
         }
 

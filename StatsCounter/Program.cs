@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace StatsCounter
 {
@@ -11,6 +13,7 @@ namespace StatsCounter
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost
                 .CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((ctx, builder) => { builder.AddUserSecrets(Assembly.GetExecutingAssembly(), true); })
                 .UseStartup<Startup>();
     }
 }
